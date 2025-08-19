@@ -11,35 +11,56 @@ public class Ming {
 
         while (true) {
             String input = scanner.nextLine();
-
             Scanner lineScanner = new Scanner(input);
-            String command = lineScanner.next();
 
-            if (command.equals("mark")) {
-                int id = lineScanner.nextInt();
-                Task task = list.get(id - 1);
-                task.markAsDone();
-                System.out.println("I've marked this task as dene:\n" + task.toString());
-            }  else if (command.equals("unmark")) {
-                int id = lineScanner.nextInt();
-                Task task = list.get(id - 1);
-                task.markAsNotDone();
-                System.out.println("I've unmarked this task as dene:\n" + task.toString());
-            } else if (input.equals("list")) {
-                int i = 1;
-                System.out.println("Here are the tasks in your list:");
-                for (Task task : list) {
-                    System.out.println(task.toString());
-                    i++;
-                }
-            } else if (input.equals("bye")){
-                System.out.println("Goodbye!");
-                return;
-            } else {
-                Task task = new Task(input);
-                list.add(task);
-                System.out.println("added: " + task.getDescription());
+            String command = lineScanner.hasNext() ? lineScanner.next() : "";
+
+            switch (command) {
+                case "mark":
+                    handleMark(lineScanner, list);
+                    break;
+                case "unmark":
+                    handleUnamrk(lineScanner, list);
+                    break;
+                case "list":
+                    handleList(list);
+                    break;
+                case "bye":
+                    System.out.println("Goodbye!");
+                    return;
+                default:
+                    handleAddTask(input, list);
             }
+            lineScanner.close();
         }
+    }
+
+    private static void handleMark(Scanner lineScanner, List<Task> list) {
+        int id = lineScanner.nextInt();
+        Task task = list.get(id - 1);
+        task.markAsDone();
+        System.out.println("I've marked this task as done:\n" + task.toString());
+    }
+
+    private static void handleUnamrk(Scanner lineScanner, List<Task> list) {
+        int id = lineScanner.nextInt();
+        Task task = list.get(id - 1);
+        task.markAsNotDone();
+        System.out.println("I've unmarked this task as done:\n" + task.toString());
+    }
+
+    private static void handleList(List<Task> list) {
+        int i = 1;
+        System.out.println("Here are the tasks in your list:");
+        for (Task task : list) {
+            System.out.println(i + ". " + task.toString());
+            i++;
+        }
+    }
+
+    private static void handleAddTask(String input, List<Task> list) {
+        Task task = new Task(input);
+        list.add(task);
+        System.out.println("added: " + task.getDescription());
     }
 }
