@@ -10,17 +10,15 @@ public class Ming {
         System.out.println("Hello from! I'm Ming\n" + "What can I do for you?\n");
 
         while (true) {
-            String input = scanner.nextLine();
-            Scanner lineScanner = new Scanner(input);
-
-            String command = lineScanner.hasNext() ? lineScanner.next() : "";
+            Scanner lineScanner = new Scanner(scanner.nextLine());
+            String command = lineScanner.hasNext() ? lineScanner.next() : null;
 
             switch (command) {
                 case "mark":
                     handleMark(lineScanner, list);
                     break;
                 case "unmark":
-                    handleUnamrk(lineScanner, list);
+                    handleUnmark(lineScanner, list);
                     break;
                 case "list":
                     handleList(list);
@@ -29,7 +27,7 @@ public class Ming {
                     System.out.println("Goodbye!");
                     return;
                 default:
-                    handleAddTask(input, list);
+                    handleAddTask(command, lineScanner, list);
             }
             lineScanner.close();
         }
@@ -42,7 +40,7 @@ public class Ming {
         System.out.println("I've marked this task as done:\n" + task.toString());
     }
 
-    private static void handleUnamrk(Scanner lineScanner, List<Task> list) {
+    private static void handleUnmark(Scanner lineScanner, List<Task> list) {
         int id = lineScanner.nextInt();
         Task task = list.get(id - 1);
         task.markAsNotDone();
@@ -58,9 +56,29 @@ public class Ming {
         }
     }
 
-    private static void handleAddTask(String input, List<Task> list) {
-        Task task = new Task(input);
+    private static void handleAddTask(String command, Scanner lineScanner, List<Task> list) {
+        String remainder = lineScanner.nextLine();
+        Task task = null;
+
+        switch (command) {
+            case "todo":
+                task = new Todo(remainder);
+                break;
+            case "deadline":
+                String[] parts = remainder.split(" /by ", 2);
+                task = new Deadline(parts[0], parts[1]);
+                break;
+            case "event":
+                String[] fromSplit = remainder.split(" /from ", 2);
+                String[] toSplit = fromSplit[1].split(" /to ", 2);
+                task = new Event(fromSplit[0], toSplit[0], toSplit[1]);
+                break;
+            default:
+                System.out.println("Unknown task type: " + command);
+                return;
+        }
         list.add(task);
-        System.out.println("added: " + task.getDescription());
+        System.out.println("I have now added:\n" + task.toString()
+                + "\nNow you have " + list.size() + " tasks in the list.");
     }
 }
