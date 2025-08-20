@@ -7,11 +7,11 @@ public class Ming {
         Scanner scanner = new Scanner(System.in);
         List<Task> list = new ArrayList<>(100);
 
-        System.out.println("Hello from! I'm Ming\n" + "What can I do for you?\n");
+        System.out.println("Hello! I'm Ming!\n" + "What can I do for you?");
 
         while (true) {
             Scanner lineScanner = new Scanner(scanner.nextLine());
-            String command = lineScanner.hasNext() ? lineScanner.next() : null;
+            String command = lineScanner.next();
 
             switch (command) {
                 case "mark":
@@ -37,28 +37,28 @@ public class Ming {
         int id = lineScanner.nextInt();
         Task task = list.get(id - 1);
         task.markAsDone();
-        System.out.println("I've marked this task as done:\n" + task.toString());
+        System.out.println("I've marked this task as done:\n" + task);
     }
 
     private static void handleUnmark(Scanner lineScanner, List<Task> list) {
         int id = lineScanner.nextInt();
         Task task = list.get(id - 1);
         task.markAsNotDone();
-        System.out.println("I've unmarked this task as done:\n" + task.toString());
+        System.out.println("I've unmarked this task:\n" + task);
     }
 
     private static void handleList(List<Task> list) {
         int i = 1;
         System.out.println("Here are the tasks in your list:");
         for (Task task : list) {
-            System.out.println(i + ". " + task.toString());
+            System.out.println(i + ". " + task);
             i++;
         }
     }
 
     private static void handleAddTask(String command, Scanner lineScanner, List<Task> list) {
         String remainder = lineScanner.nextLine();
-        Task task = null;
+        Task task;
 
         switch (command) {
             case "todo":
@@ -78,7 +78,7 @@ public class Ming {
                 return;
         }
         list.add(task);
-        System.out.println("I have now added:\n" + task.toString()
+        System.out.println("I have now added:\n" + task
                 + "\nNow you have " + list.size() + " tasks in the list.");
     }
 }
