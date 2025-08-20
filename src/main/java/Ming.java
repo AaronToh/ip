@@ -14,14 +14,17 @@ public class Ming {
             String command = lineScanner.next();
 
             switch (command) {
+                case "list":
+                    handleList(list);
+                    break;
                 case "mark":
                     handleMark(lineScanner, list);
                     break;
                 case "unmark":
                     handleUnmark(lineScanner, list);
                     break;
-                case "list":
-                    handleList(list);
+                case "delete":
+                    handleDelete(lineScanner, list);
                     break;
                 case "bye":
                     System.out.println("Goodbye!");
@@ -30,6 +33,15 @@ public class Ming {
                     handleAddTask(command, lineScanner, list);
             }
             lineScanner.close();
+        }
+    }
+
+    private static void handleList(List<Task> list) {
+        int i = 1;
+        System.out.println("Here are the tasks in your list:");
+        for (Task task : list) {
+            System.out.println(i + ". " + task);
+            i++;
         }
     }
 
@@ -47,13 +59,11 @@ public class Ming {
         System.out.println("I've unmarked this task:\n" + task);
     }
 
-    private static void handleList(List<Task> list) {
-        int i = 1;
-        System.out.println("Here are the tasks in your list:");
-        for (Task task : list) {
-            System.out.println(i + ". " + task);
-            i++;
-        }
+    private static void handleDelete(Scanner lineScanner, List<Task> list) {
+        int id = lineScanner.nextInt();
+        Task task = list.remove(id - 1);
+        System.out.println("I've removed this task:\n" + task
+                + "\n" + "Now you have " + list.size() + " tasks in the list.");
     }
 
     private static void handleAddTask(String command, Scanner lineScanner, List<Task> list) {
