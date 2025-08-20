@@ -7,19 +7,17 @@ public class Task {
         this.isDone = false;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public boolean isDone() {
-        return isDone;
-    }
-
-    public void markAsDone() {
+    public void markAsDone() throws MingException {
+        if (isDone) {
+            throw new MingException("Task is already done.");
+        }
         this.isDone = true;
     }
 
-    public void markAsNotDone() {
+    public void markAsNotDone() throws MingException {
+        if (!isDone) {
+            throw new MingException("Task is not done yet.");
+        }
         this.isDone = false;
     }
 
