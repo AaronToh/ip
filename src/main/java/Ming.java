@@ -133,7 +133,7 @@ public class Ming {
             if (toSplit.length < 2 || fromSplit[0].isEmpty() || toSplit[0].isEmpty() || toSplit[1].isEmpty()) {
                 throw new MingException("Usage: event <description> /from <start time> /to <end time>");
             }
-            task = new Event(fromSplit[0], toSplit[1], toSplit[2]);
+            task = new Event(fromSplit[0], toSplit[0], toSplit[1]);
             break;
         default:
             throw new MingException("Unknown command: " + command);
