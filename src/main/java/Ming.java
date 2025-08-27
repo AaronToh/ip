@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -109,6 +111,7 @@ public class Ming {
     private static void handleAddTask(String command, Scanner lineScanner, List<Task> list) throws MingException {
         String remainder = lineScanner.hasNextLine() ? lineScanner.nextLine().trim() : "";
         Task task;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
 
         switch (command) {
         case "todo":
@@ -122,7 +125,7 @@ public class Ming {
             if (parts.length < 2 || parts[0].isEmpty() || parts[1].isEmpty()) {
                 throw new MingException("Usage: deadline <description> /by <date>");
             }
-            task = new Deadline(parts[0], parts[1]);
+            task = new Deadline(parts[0], LocalDateTime.parse(parts[1], formatter));
             break;
         case "event":
             String[] fromSplit = remainder.split(" /from ", 2);
@@ -133,7 +136,9 @@ public class Ming {
             if (toSplit.length < 2 || fromSplit[0].isEmpty() || toSplit[0].isEmpty() || toSplit[1].isEmpty()) {
                 throw new MingException("Usage: event <description> /from <start time> /to <end time>");
             }
-            task = new Event(fromSplit[0], toSplit[0], toSplit[1]);
+            LocalDateTime from = LocalDateTime.parse(fromSplit[0], formatter);
+            LocalDateTime to = LocalDateTime.parse(toSplit[1], formatter);
+            task = new Event(fromSplit[0], from, to);
             break;
         default:
             throw new MingException("Unknown command: " + command);
@@ -148,6 +153,7 @@ public class Ming {
         List<Task> list = new ArrayList<>();
         Path path = Paths.get("data", "ming.txt");
         Path directory = path.getParent();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
 
         try {
             if (!Files.exists(directory)) {
@@ -181,7 +187,7 @@ public class Ming {
                 list.add(todo);
                 break;
             case "D":
-                Task deadline = new Deadline(parts[2], parts[3]);
+                Task deadline = new Deadline(parts[2], LocalDateTime.parse(parts[3], formatter));
                 if (done) {
                     try {
                         deadline.markAsDone();
@@ -192,7 +198,7 @@ public class Ming {
                 list.add(deadline);
                 break;
             case "E":
-                Task event = new Event(parts[2], parts[3], parts[4]);
+                Task event = new Event(parts[2], LocalDateTime.parse(parts[3], formatter), LocalDateTime.parse(parts[4], formatter));
                 if (done) {
                     try {
                         event.markAsDone();
