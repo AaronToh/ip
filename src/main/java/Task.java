@@ -21,6 +21,10 @@ public class Task {
         this.isDone = false;
     }
 
+    public String toDataString() {
+        return (isDone ? "1" : "0") + " | " + description;
+    }
+
     @Override
     public String toString() {
         return (isDone ? "[X] " : "[ ] ") + description;
