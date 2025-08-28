@@ -16,7 +16,6 @@ public class Ming {
         List<Task> list = loadAll();
 
         Scanner scanner = new Scanner(System.in);
-
         System.out.println("Hello! I'm Ming!\n" + "What can I do for you?");
 
         while (true) {
@@ -104,12 +103,13 @@ public class Ming {
             throw new MingException("Task ID out of range. Please provide a valid ID.");
         }
         Task task = list.remove(id - 1);
+        saveAll(list);
         System.out.println("I've removed this task:\n" + task
                 + "\n" + "Now you have " + list.size() + " tasks in the list.");
     }
 
     private static void handleAddTask(String command, Scanner lineScanner, List<Task> list) throws MingException {
-        String remainder = lineScanner.hasNextLine() ? lineScanner.nextLine().trim() : "";
+        String remainder = lineScanner.nextLine();
         Task task;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
 
@@ -159,12 +159,14 @@ public class Ming {
             if (!Files.exists(directory)) {
                 Files.createDirectory(directory);
             }
-            Files.createFile(path);
+            if (!Files.exists(path)) {
+                Files.createFile(path);
+            }
         } catch (IOException e) {
             System.out.println("Error initializing storage: " + e.getMessage());
         }
 
-        Scanner dataScanner;
+        Scanner dataScanner = null;
         try {
             dataScanner = new Scanner(path.toFile());
         } catch (FileNotFoundException e) {

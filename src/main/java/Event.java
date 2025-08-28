@@ -13,7 +13,9 @@ public class Event extends Task {
 
     @Override
     public String toDataString() {
-        return "E | " + super.toDataString() + " | " + from + " | " + to;
+        return "E | " + super.toDataString() + " | "
+                + from.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm")) + " | "
+                + to.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
     }
 
     @Override
