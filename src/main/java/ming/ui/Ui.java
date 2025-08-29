@@ -66,6 +66,19 @@ public class Ui {
                 + "\n" + "Now you have " + size + " tasks in the list.");
     }
 
+    public void showFind(List<Task> tasks) {
+        if (tasks.isEmpty()) {
+            System.out.println("No matching tasks found.");
+            return;
+        }
+        int i = 1;
+        System.out.println("Here are the matching tasks in your list:");
+        for (Task task : tasks) {
+            System.out.println(i + ". " + task);
+            i++;
+        }
+    }
+
     public void showAdd(Task task, int size) {
         System.out.println("I have now added:\n" + task
                 + "\n" + "Now you have " + size + " tasks in the list.");

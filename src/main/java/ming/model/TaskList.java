@@ -74,6 +74,13 @@ public class TaskList {
         return task;
     }
 
+    public List<Task> find(String keyword) {
+        return tasks.stream()
+                .filter(task -> task.getDescription().toLowerCase().contains(keyword.toLowerCase()))
+                .toList();
+    }
+
+
     private void checkIndex(int i) throws MingException {
         if (i < 0 || i >= tasks.size()) {
             throw new MingException("Index out of bounds: " + (i + 1));

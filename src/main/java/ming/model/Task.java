@@ -9,12 +9,14 @@ public class Task {
 
     /**
      * Constructs a Task with the given description. isDone is set to false by default.
-     *
-     * @param description
      */
     public Task(String description) {
         this.description = description;
         this.isDone = false;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public void markAsDone() throws MingException {
