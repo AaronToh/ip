@@ -46,7 +46,7 @@ public class Parser {
         case "deadline":
             String[] deadlineParts = remainder.split(" /by ", 2);
             if (deadlineParts.length < 2 || deadlineParts[0].isEmpty() || deadlineParts[1].isEmpty()) {
-                throw new MingException("The description and deadline of a deadline cannot be empty.");
+                throw new MingException("Usage: deadline <description> /by <due date>");
             }
             return new DeadlineCommand(deadlineParts[0], parseDateTime(deadlineParts[1]));
 

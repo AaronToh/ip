@@ -13,6 +13,10 @@ public class TodoCommand extends Command {
         this.description = description;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws MingException {
         Task task = tasks.addTodo(description);
