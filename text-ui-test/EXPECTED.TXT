@@ -1,21 +1,22 @@
-Hello! I'm Ming!
+Hello! I'm Ming
 What can I do for you?
 I have now added:
 [T][ ]  borrow book
 Now you have 1 tasks in the list.
-Here are the tasks in your list:
-1. [T][ ]  borrow book
+____________________________________________________________
 I have now added:
-[D][ ]  return book (by: Sunday)
+[D][ ]  return book (by: Dec 9 2019 1800)
 Now you have 2 tasks in the list.
+____________________________________________________________
 I have now added:
-[E][ ]  project meeting (from: Mon 2pm to: 4pm)
+[E][ ]  project meeting (from: Dec 9 2019 2000 to: Dec 9 2019 2200)
 Now you have 3 tasks in the list.
-I have now added:
-[D][ ]  do homework (by: no idea :-p)
-Now you have 4 tasks in the list.
+____________________________________________________________
 I've marked this task as done:
-[D][X]  return book (by: Sunday)
+[D][X]  return book (by: Dec 9 2019 1800)
+____________________________________________________________
 I've unmarked this task:
-[D][ ]  return book (by: Sunday)
-Goodbye!
+[D][ ]  return book (by: Dec 9 2019 1800)
+____________________________________________________________
+Bye!
+____________________________________________________________
