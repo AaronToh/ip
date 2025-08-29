@@ -1,11 +1,11 @@
 package ming.app;
 
-import ming.ui.Ui;
-import ming.storage.Storage;
-import ming.parser.Parser;
-import ming.model.TaskList;
 import ming.command.Command;
 import ming.exception.MingException;
+import ming.model.TaskList;
+import ming.parser.Parser;
+import ming.storage.Storage;
+import ming.ui.Ui;
 
 public class Ming {
     private Storage storage;
@@ -25,6 +25,7 @@ public class Ming {
 
     public void run() {
         ui.showWelcome();
+        ui.showLine();
         boolean isExit = false;
         while (!isExit) {
             try {

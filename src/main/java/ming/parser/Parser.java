@@ -1,12 +1,12 @@
 package ming.parser;
 
+import ming.command.*;
+import ming.exception.MingException;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
-
-import ming.command.*;
-import ming.exception.MingException;
 
 public class Parser {
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
@@ -36,6 +36,12 @@ public class Parser {
         case "delete":
             i = parseIndex(remainder);
             return new DeleteCommand(i);
+
+        case "find":
+            if (remainder.isEmpty()) {
+                throw new MingException("The search keyword cannot be empty.");
+            }
+            return new FindCommand(remainder);
 
         case "todo":
             if (remainder.isEmpty()) {
