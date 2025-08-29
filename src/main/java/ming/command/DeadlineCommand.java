@@ -1,3 +1,11 @@
+package ming.command;
+
+import ming.exception.MingException;
+import ming.model.TaskList;
+import ming.ui.Ui;
+import ming.storage.Storage;
+import ming.model.Task;
+
 import java.time.LocalDateTime;
 
 public class DeadlineCommand extends Command {

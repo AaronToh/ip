@@ -1,3 +1,7 @@
+package ming.model;
+
+import ming.exception.MingException;
+
 public class Task {
     private final String description;
     private boolean isDone;
@@ -9,14 +13,14 @@ public class Task {
 
     public void markAsDone() throws MingException {
         if (isDone) {
-            throw new MingException("Task is already done.");
+            throw new MingException("ming.model.Task is already done.");
         }
         this.isDone = true;
     }
 
     public void markAsNotDone() throws MingException {
         if (!isDone) {
-            throw new MingException("Task is not done yet.");
+            throw new MingException("ming.model.Task is not done yet.");
         }
         this.isDone = false;
     }

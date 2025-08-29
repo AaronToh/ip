@@ -1,3 +1,7 @@
+package ming.model;
+
+import ming.exception.MingException;
+
 import java.time.LocalDateTime;
 import java.util.List;
 

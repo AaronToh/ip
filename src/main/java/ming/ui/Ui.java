@@ -1,3 +1,7 @@
+package ming.ui;
+
+import ming.model.Task;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -13,7 +17,7 @@ public class Ui {
     }
 
     public void showWelcome() {
-        System.out.println("Hello! I'm Ming\n" + "What can I do for you?");
+        System.out.println("Hello! I'm ming.app.Ming\n" + "What can I do for you?");
     }
 
     public String readCommand() {
