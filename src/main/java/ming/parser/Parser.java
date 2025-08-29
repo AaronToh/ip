@@ -8,6 +8,9 @@ import java.util.Scanner;
 import ming.command.*;
 import ming.exception.MingException;
 
+/**
+ * Parses user input into the corresponding commands for execution.
+ */
 public class Parser {
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
 
@@ -73,7 +76,7 @@ public class Parser {
         }
     }
 
-    public static LocalDateTime parseDateTime(String input) throws MingException {
+    private static LocalDateTime parseDateTime(String input) throws MingException {
         try {
             return LocalDateTime.parse(input, FORMATTER);
         } catch (DateTimeParseException e) {

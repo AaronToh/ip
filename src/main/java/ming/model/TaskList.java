@@ -5,13 +5,24 @@ import ming.exception.MingException;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * Represents a list of tasks and provides methods to manipulate them.
+ */
 public class TaskList {
     List<Task> tasks;
 
+    /**
+     * Initializes an empty TaskList.
+     */
     public TaskList() {
         this.tasks = new java.util.ArrayList<>();
     }
 
+    /**
+     * Initializes a TaskList with the given list of tasks.
+     *
+     * @param tasks List of tasks to initialize the TaskList with.
+     */
     public TaskList(List<Task> tasks) {
         this.tasks = tasks;
     }
