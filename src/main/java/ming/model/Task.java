@@ -11,6 +11,10 @@ public class Task {
         this.isDone = false;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public void markAsDone() throws MingException {
         if (isDone) {
             throw new MingException("ming.model.Task is already done.");
