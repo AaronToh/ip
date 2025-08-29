@@ -11,7 +11,7 @@ public class Deadline extends Task {
 
     @Override
     public String toDataString() {
-        return "D | " + super.toDataString() + " | " + by;
+        return "D | " + super.toDataString() + " | " + by.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
     }
 
     @Override
