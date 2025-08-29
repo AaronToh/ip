@@ -1,3 +1,12 @@
+package ming.app;
+
+import ming.ui.Ui;
+import ming.storage.Storage;
+import ming.parser.Parser;
+import ming.model.TaskList;
+import ming.command.Command;
+import ming.exception.MingException;
+
 public class Ming {
     private Storage storage;
     private TaskList tasks;

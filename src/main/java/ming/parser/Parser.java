@@ -1,7 +1,12 @@
+package ming.parser;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
+
+import ming.command.*;
+import ming.exception.MingException;
 
 public class Parser {
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
@@ -9,7 +14,7 @@ public class Parser {
     public static Command parse(String input) throws MingException {
         Scanner scanner = new Scanner(input);
 
-        String command = scanner.next();
+        String command = scanner.hasNext() ? scanner.next() : "";
         String remainder = scanner.hasNextLine() ? scanner.nextLine() : "";
 
         int i;

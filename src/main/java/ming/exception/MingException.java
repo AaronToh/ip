@@ -1,3 +1,5 @@
+package ming.exception;
+
 public class MingException extends Exception {
     private final String message;
 
@@ -7,7 +9,7 @@ public class MingException extends Exception {
 
     @Override
     public String toString() {
-        return "MingException: " + message;
+        return "ming.exception.MingException: " + message;
     }
 
     public String getMessage() {
