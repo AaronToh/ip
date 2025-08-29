@@ -2,10 +2,16 @@ package ming.model;
 
 import ming.exception.MingException;
 
+
 public class Task {
     private final String description;
     private boolean isDone;
 
+    /**
+     * Constructs a Task with the given description. isDone is set to false by default.
+     *
+     * @param description
+     */
     public Task(String description) {
         this.description = description;
         this.isDone = false;
@@ -25,6 +31,9 @@ public class Task {
         this.isDone = false;
     }
 
+    /**
+     * Returns the description of the task formatted for storage.
+     */
     public String toDataString() {
         return (isDone ? "1" : "0") + " | " + description;
     }

@@ -18,14 +18,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Manages the loading and saving of tasks to a file.
+ */
 public class Storage {
     private final Path path;
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
 
+    /**
+     * Constructs a Storage object with the specified file path.
+     *
+     * @param filePath
+     */
     public Storage(String filePath) {
         this.path = Paths.get(filePath);
     }
 
+    /**
+     * Loads tasks from the file. Returns an empty list if the file does not exist.
+     */
     public List<Task> load() throws MingException {
         List<Task> tasks = new ArrayList<>();
 
@@ -81,6 +92,11 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Saves the list of tasks to the file.
+     *
+     * @param tasks List of tasks to save.
+     */
     public void save(List<Task> tasks) throws MingException {
         try {
             FileWriter writer = new FileWriter(path.toFile());

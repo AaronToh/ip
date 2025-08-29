@@ -5,9 +5,15 @@ import ming.model.Task;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Handles interactions with the user via the command line.
+ */
 public class Ui {
     private final Scanner scanner = new Scanner(System.in);
 
+    /**
+     * Displays a line separator after a response for better readability.
+     */
     public void showLine() {
         System.out.println("____________________________________________________________");
     }
@@ -20,6 +26,9 @@ public class Ui {
         System.out.println("Hello! I'm ming.app.Ming\n" + "What can I do for you?");
     }
 
+    /**
+     * Reads a command from the user.
+     */
     public String readCommand() {
         if (!scanner.hasNextLine()) {
             return "";

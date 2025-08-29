@@ -3,10 +3,20 @@ package ming.model;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Represents an event task with a description, start date & time, and end date & time.
+ */
 public class Event extends Task {
     private final LocalDateTime from;
     private final LocalDateTime to;
 
+    /**
+     * Constructs an Event task.
+     *
+     * @param description Description of the event task.
+     * @param from        Start date and time of the event task.
+     * @param to          End date and time of the event task.
+     */
     public Event(String description, LocalDateTime from, LocalDateTime to) {
         super(description);
         this.from = from;
