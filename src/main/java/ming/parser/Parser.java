@@ -14,7 +14,7 @@ public class Parser {
     public static Command parse(String input) throws MingException {
         Scanner scanner = new Scanner(input);
 
-        String command = scanner.next();
+        String command = scanner.hasNext() ? scanner.next() : "";
         String remainder = scanner.hasNextLine() ? scanner.nextLine() : "";
 
         int i;
