@@ -1,9 +1,9 @@
 package ming.ui;
 
-import ming.model.Task;
-
 import java.util.List;
 import java.util.Scanner;
+
+import ming.model.Task;
 
 /**
  * Handles interactions with the user via the command line.
@@ -44,6 +44,11 @@ public class Ui {
         System.out.println("Bye!");
     }
 
+    /**
+     * Displays the list of tasks to the user.
+     *
+     * @param tasks The list of tasks to be displayed.
+     */
     public void showList(List<Task> tasks) {
         int i = 1;
         System.out.println("Here are the tasks in your list:");
@@ -61,11 +66,22 @@ public class Ui {
         System.out.println("I've unmarked this task:\n" + task);
     }
 
+    /**
+     * Displays a message indicating that a task has been deleted.
+     *
+     * @param task The task that was deleted.
+     * @param size The new size of the task list after deletion.
+     */
     public void showDelete(Task task, int size) {
         System.out.println("I've removed this task:\n" + task
                 + "\n" + "Now you have " + size + " tasks in the list.");
     }
 
+    /**
+     * Displays the list of tasks that match a search query.
+     *
+     * @param tasks The list of matching tasks.
+     */
     public void showFind(List<Task> tasks) {
         if (tasks.isEmpty()) {
             System.out.println("No matching tasks found.");
@@ -79,6 +95,12 @@ public class Ui {
         }
     }
 
+    /**
+     * Displays a message indicating that a task has been added.
+     *
+     * @param task The task that was added.
+     * @param size The new size of the task list after addition.
+     */
     public void showAdd(Task task, int size) {
         System.out.println("I have now added:\n" + task
                 + "\n" + "Now you have " + size + " tasks in the list.");

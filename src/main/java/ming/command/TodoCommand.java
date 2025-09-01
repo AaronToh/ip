@@ -1,11 +1,14 @@
 package ming.command;
 
 import ming.exception.MingException;
+import ming.model.Task;
 import ming.model.TaskList;
 import ming.storage.Storage;
 import ming.ui.Ui;
-import ming.model.Task;
 
+/**
+ * Represents a command to add a todo task.
+ */
 public class TodoCommand extends Command {
     private final String description;
 

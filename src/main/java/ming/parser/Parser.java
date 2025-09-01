@@ -1,12 +1,21 @@
 package ming.parser;
 
-import ming.command.*;
-import ming.exception.MingException;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
+
+import ming.command.Command;
+import ming.command.DeadlineCommand;
+import ming.command.DeleteCommand;
+import ming.command.EventCommand;
+import ming.command.ExitCommand;
+import ming.command.FindCommand;
+import ming.command.ListCommand;
+import ming.command.MarkCommand;
+import ming.command.TodoCommand;
+import ming.command.UnmarkCommand;
+import ming.exception.MingException;
 
 /**
  * Parses user input into the corresponding commands for execution.
@@ -14,6 +23,13 @@ import java.util.Scanner;
 public class Parser {
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
 
+    /**
+     * Parses the user input and returns the corresponding Command object.
+     *
+     * @param input The user input string.
+     * @return The Command object representing the user input.
+     * @throws MingException If the input is invalid or cannot be parsed.
+     */
     public static Command parse(String input) throws MingException {
         Scanner scanner = new Scanner(input);
 
