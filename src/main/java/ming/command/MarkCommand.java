@@ -1,11 +1,14 @@
 package ming.command;
 
 import ming.exception.MingException;
+import ming.model.Task;
 import ming.model.TaskList;
 import ming.storage.Storage;
 import ming.ui.Ui;
-import ming.model.Task;
 
+/**
+ * Represents a command to mark a task as completed.
+ */
 public class MarkCommand extends Command {
     private final int index;
 

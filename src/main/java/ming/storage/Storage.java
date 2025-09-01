@@ -1,11 +1,5 @@
 package ming.storage;
 
-import ming.exception.MingException;
-import ming.model.Deadline;
-import ming.model.Event;
-import ming.model.Task;
-import ming.model.Todo;
-
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -18,6 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import ming.exception.MingException;
+import ming.model.Deadline;
+import ming.model.Event;
+import ming.model.Task;
+import ming.model.Todo;
+
 /**
  * Manages the loading and saving of tasks to a file.
  */
@@ -28,7 +28,7 @@ public class Storage {
     /**
      * Constructs a Storage object with the specified file path.
      *
-     * @param filePath
+     * @param filePath The file path where tasks are stored.
      */
     public Storage(String filePath) {
         this.path = Paths.get(filePath);
@@ -78,7 +78,9 @@ public class Storage {
                 tasks.add(deadline);
                 break;
             case "E":
-                Task event = new Event(parts[2], LocalDateTime.parse(parts[3], formatter), LocalDateTime.parse(parts[4], formatter));
+                Task event = new Event(parts[2],
+                        LocalDateTime.parse(parts[3], formatter),
+                        LocalDateTime.parse(parts[4], formatter));
                 if (isDone) {
                     event.markAsDone();
                 }

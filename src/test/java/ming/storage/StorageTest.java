@@ -1,17 +1,19 @@
 package ming.storage;
 
-import ming.exception.MingException;
-import ming.model.TaskList;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.nio.file.Path;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import java.nio.file.Path;
+import ming.exception.MingException;
+import ming.model.TaskList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-
+/**
+ * Unit tests for the Storage class.
+ */
 public class StorageTest {
     @TempDir
     Path tempDir;

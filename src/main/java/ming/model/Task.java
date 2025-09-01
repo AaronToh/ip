@@ -3,6 +3,9 @@ package ming.model;
 import ming.exception.MingException;
 
 
+/**
+ * Represents a task with a description and a completion status.
+ */
 public class Task {
     private final String description;
     private boolean isDone;
@@ -19,6 +22,9 @@ public class Task {
         return description;
     }
 
+    /**
+     * Marks the task as done.
+     */
     public void markAsDone() throws MingException {
         if (isDone) {
             throw new MingException("ming.model.Task is already done.");
@@ -26,6 +32,11 @@ public class Task {
         this.isDone = true;
     }
 
+    /**
+     * Marks the task as not done.
+     *
+     * @throws MingException if the task is already not done.
+     */
     public void markAsNotDone() throws MingException {
         if (!isDone) {
             throw new MingException("ming.model.Task is not done yet.");

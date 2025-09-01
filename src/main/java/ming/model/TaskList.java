@@ -1,15 +1,15 @@
 package ming.model;
 
-import ming.exception.MingException;
-
 import java.time.LocalDateTime;
 import java.util.List;
+
+import ming.exception.MingException;
 
 /**
  * Represents a list of tasks and provides methods to manipulate them.
  */
 public class TaskList {
-    List<Task> tasks;
+    private final List<Task> tasks;
 
     /**
      * Initializes an empty TaskList.
@@ -35,6 +35,13 @@ public class TaskList {
         return tasks.size();
     }
 
+    /**
+     * Marks the task at the specified index as done.
+     *
+     * @param index The index of the task to mark as done (0-based).
+     * @return The task that was marked as done.
+     * @throws MingException If the index is out of bounds.
+     */
     public Task mark(int index) throws MingException {
         checkIndex(index);
         Task task = tasks.get(index);
@@ -42,6 +49,13 @@ public class TaskList {
         return task;
     }
 
+    /**
+     * Marks the task at the specified index as not done.
+     *
+     * @param index The index of the task to mark as not done (0-based).
+     * @return The task that was marked as not done.
+     * @throws MingException If the index is out of bounds.
+     */
     public Task unmark(int index) throws MingException {
         checkIndex(index);
         Task task = tasks.get(index);
@@ -49,24 +63,52 @@ public class TaskList {
         return task;
     }
 
+    /**
+     * Adds a new Todo task to the list.
+     *
+     * @param description The description of the Todo task.
+     * @return The newly added Todo task.
+     */
     public Task addTodo(String description) {
         Task task = new Todo(description);
         tasks.add(task);
         return task;
     }
 
+    /**
+     * Adds a new Deadline task to the list.
+     *
+     * @param description The description of the Deadline task.
+     * @param by          The deadline date and time.
+     * @return The newly added Deadline task.
+     */
     public Task addDeadline(String description, LocalDateTime by) {
         Task task = new Deadline(description, by);
         tasks.add(task);
         return task;
     }
 
+    /**
+     * Adds a new Event task to the list.
+     *
+     * @param description The description of the Event task.
+     * @param from        The start date and time of the event.
+     * @param to          The end date and time of the event.
+     * @return The newly added Event task.
+     */
     public Task addEvent(String description, LocalDateTime from, LocalDateTime to) {
         Task task = new Event(description, from, to);
         tasks.add(task);
         return task;
     }
 
+    /**
+     * Deletes the task at the specified index from the list.
+     *
+     * @param index The index of the task to delete (0-based).
+     * @return The task that was deleted.
+     * @throws MingException If the index is out of bounds.
+     */
     public Task delete(int index) throws MingException {
         checkIndex(index);
         Task task = tasks.get(index);
@@ -74,6 +116,12 @@ public class TaskList {
         return task;
     }
 
+    /**
+     * Finds and returns a list of tasks that contain the specified keyword in their description.
+     *
+     * @param keyword The keyword to search for in task descriptions.
+     * @return A list of tasks containing the keyword.
+     */
     public List<Task> find(String keyword) {
         return tasks.stream()
                 .filter(task -> task.getDescription().toLowerCase().contains(keyword.toLowerCase()))
