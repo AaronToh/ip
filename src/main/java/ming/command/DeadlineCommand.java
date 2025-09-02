@@ -28,9 +28,9 @@ public class DeadlineCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws MingException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws MingException {
         Task task = tasks.addDeadline(description, by);
         storage.save(tasks.getTasks());
-        ui.showAdd(task, tasks.getSize());
+        return ui.showAdd(task, tasks.getSize());
     }
 }

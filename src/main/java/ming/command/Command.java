@@ -10,9 +10,9 @@ import ming.ui.Ui;
  */
 public abstract class Command {
     /**
-     * Executes the command. May mutate tasks and should print via ming.ui.Ui.
+     * Executes the command. May mutate tasks and should return a response String for GUI.
      */
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws MingException;
+    public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws MingException;
 
     /**
      * Returns true if this command exits the program.

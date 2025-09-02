@@ -17,9 +17,9 @@ public class UnmarkCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws MingException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws MingException {
         Task task = tasks.unmark(index);
         storage.save(tasks.getTasks());
-        ui.showUnmark(task);
+        return ui.showUnmark(task);
     }
 }

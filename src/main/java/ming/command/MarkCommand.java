@@ -17,9 +17,9 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws MingException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws MingException {
         Task task = tasks.mark(index);
         storage.save(tasks.getTasks());
-        ui.showMark(task);
+        return ui.showMark(task);
     }
 }
