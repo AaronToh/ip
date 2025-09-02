@@ -14,16 +14,16 @@ public class Ui {
     /**
      * Displays a line separator after a response for better readability.
      */
-    public void showLine() {
-        System.out.println("____________________________________________________________");
+    public String showLine() {
+        return "____________________________________________________________";
     }
 
-    public void showLoadingError() {
-        System.out.println("Loading error!");
+    public String showLoadingError() {
+        return "Loading error!";
     }
 
-    public void showWelcome() {
-        System.out.println("Hello! I'm ming.app.Ming\n" + "What can I do for you?");
+    public String showWelcome() {
+        return "Hello! I'm Ming\nWhat can I do for you?";
     }
 
     /**
@@ -36,12 +36,8 @@ public class Ui {
         return scanner.nextLine();
     }
 
-    public void showError(String message) {
-        System.out.println(message);
-    }
-
-    public void showExit() {
-        System.out.println("Bye!");
+    public String showExit() {
+        return "Bye!";
     }
 
     /**
@@ -49,21 +45,23 @@ public class Ui {
      *
      * @param tasks The list of tasks to be displayed.
      */
-    public void showList(List<Task> tasks) {
+    public String showList(List<Task> tasks) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Here are the tasks in your list:\n");
         int i = 1;
-        System.out.println("Here are the tasks in your list:");
         for (Task task : tasks) {
-            System.out.println(i + ". " + task);
+            sb.append(i).append(". ").append(task).append("\n");
             i++;
         }
+        return sb.toString().trim();
     }
 
-    public void showMark(Task task) {
-        System.out.println("I've marked this task as done:\n" + task);
+    public String showMark(Task task) {
+        return "I've marked this task as done:\n" + task;
     }
 
-    public void showUnmark(Task task) {
-        System.out.println("I've unmarked this task:\n" + task);
+    public String showUnmark(Task task) {
+        return "I've unmarked this task:\n" + task;
     }
 
     /**
@@ -72,9 +70,8 @@ public class Ui {
      * @param task The task that was deleted.
      * @param size The new size of the task list after deletion.
      */
-    public void showDelete(Task task, int size) {
-        System.out.println("I've removed this task:\n" + task
-                + "\n" + "Now you have " + size + " tasks in the list.");
+    public String showDelete(Task task, int size) {
+        return "I've removed this task:\n" + task + "\nNow you have " + size + " tasks in the list.";
     }
 
     /**
@@ -82,27 +79,25 @@ public class Ui {
      *
      * @param tasks The list of matching tasks.
      */
-    public void showFind(List<Task> tasks) {
+    public String showFind(List<Task> tasks) {
         if (tasks.isEmpty()) {
-            System.out.println("No matching tasks found.");
-            return;
+            return "No matching tasks found.";
         }
+        StringBuilder sb = new StringBuilder();
+        sb.append("Here are the matching tasks in your list:\n");
         int i = 1;
-        System.out.println("Here are the matching tasks in your list:");
         for (Task task : tasks) {
-            System.out.println(i + ". " + task);
+            sb.append(i).append(". ").append(task).append("\n");
             i++;
         }
+        return sb.toString().trim();
     }
 
-    /**
-     * Displays a message indicating that a task has been added.
-     *
-     * @param task The task that was added.
-     * @param size The new size of the task list after addition.
-     */
-    public void showAdd(Task task, int size) {
-        System.out.println("I have now added:\n" + task
-                + "\n" + "Now you have " + size + " tasks in the list.");
+    public String showError(String message) {
+        return message;
+    }
+
+    public String showAdd(Task task, int size) {
+        return "Got it. I've added this task:\n" + task + "\nNow you have " + size + " tasks in the list.";
     }
 }

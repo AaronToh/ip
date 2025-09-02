@@ -37,20 +37,34 @@ public class Ming {
      * It reads user commands, executes them, and handles any exceptions.
      */
     public void run() {
-        ui.showWelcome();
-        ui.showLine();
+        System.out.println(ui.showWelcome());
+        System.out.println(ui.showLine());
         boolean isExit = false;
         while (!isExit) {
             try {
                 String fullCommand = ui.readCommand();
                 Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
+                String response = c.execute(tasks, ui, storage);
+                System.out.println(response); // Print the response returned by execute
+                System.out.println(ui.showLine());
                 isExit = c.isExit();
             } catch (MingException e) {
                 ui.showError(e.getMessage());
             } finally {
                 ui.showLine();
             }
+        }
+    }
+
+    /**
+     * Processes user input and returns the response as a String for GUI.
+     */
+    public String getResponse(String input) {
+        try {
+            Command c = Parser.parse(input);
+            return c.execute(tasks, ui, storage);
+        } catch (MingException e) {
+            return e.getMessage();
         }
     }
 
