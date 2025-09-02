@@ -23,7 +23,7 @@ public class Ui {
     }
 
     public String showWelcome() {
-        return "Hello! I'm ming.app.Ming\nWhat can I do for you?";
+        return "Hello! I'm Ming\nWhat can I do for you?";
     }
 
     /**
