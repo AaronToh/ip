@@ -38,7 +38,7 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         String welcome = "Hello! I'm Ming! What can I do for you?";
         dialogContainer.getChildren().addAll(
-                DialogBox.getDukeDialog(welcome, mingImage)
+                DialogBox.getMingDialog(welcome, mingImage)
         );
     }
 
@@ -50,7 +50,7 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
-     * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
+     * Creates two dialog boxes, one echoing user input and the other containing Ming's reply and then appends them to
      * the dialog container. Clears the user input after processing.
      */
     @FXML
@@ -59,7 +59,7 @@ public class MainWindow extends AnchorPane {
         String response = ming.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, mingImage)
+                DialogBox.getMingDialog(response, mingImage)
         );
         userInput.clear();
     }
