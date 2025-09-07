@@ -12,9 +12,9 @@ import ming.ui.Ui;
  * It initializes the application and starts the command loop.
  */
 public class Ming {
-    private Storage storage;
+    private final Storage storage;
     private TaskList tasks;
-    private Ui ui;
+    private final Ui ui;
 
     /**
      * Constructs a Ming application with the specified file path for storage.
@@ -37,6 +37,11 @@ public class Ming {
      * It reads user commands, executes them, and handles any exceptions.
      */
     public void run() {
+        // Assert internal state consistency
+        assert tasks != null;
+        assert ui != null;
+        assert storage != null;
+
         System.out.println(ui.showWelcome());
         System.out.println(ui.showLine());
         boolean isExit = false;
@@ -62,6 +67,9 @@ public class Ming {
     public String getResponse(String input) {
         try {
             Command c = Parser.parse(input);
+            String response = c.execute(tasks, ui, storage);
+
+            assert response != null : "Command execution should not return null";
             return c.execute(tasks, ui, storage);
         } catch (MingException e) {
             return e.getMessage();
