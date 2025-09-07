@@ -22,6 +22,11 @@ import ming.exception.MingException;
  */
 public class Parser {
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+    private static final String DEADLINE_SEPARATOR = " /by ";
+    private static final String EVENT_FROM_SEPARATOR = " /from ";
+    private static final String EVENT_TO_SEPARATOR = " /to ";
+    private static final int DEADLINE_PARTS = 2;
+    private static final int EVENT_PARTS = 3;
 
     /**
      * Parses the user input and returns the corresponding Command object.
@@ -69,14 +74,14 @@ public class Parser {
             return new TodoCommand(remainder);
 
         case "deadline":
-            String[] deadlineParts = remainder.split(" /by ", 2);
-            if (deadlineParts.length < 2 || deadlineParts[0].isEmpty() || deadlineParts[1].isEmpty()) {
+            String[] deadlineParts = remainder.split(DEADLINE_SEPARATOR, DEADLINE_PARTS);
+            if (deadlineParts.length < DEADLINE_PARTS || deadlineParts[0].isEmpty() || deadlineParts[1].isEmpty()) {
                 throw new MingException("Usage: deadline <description> /by <due date>");
             }
             return new DeadlineCommand(deadlineParts[0], parseDateTime(deadlineParts[1]));
 
         case "event":
-            String[] eventParts = remainder.split(" /from | /to ", 3);
+            String[] eventParts = remainder.split(EVENT_FROM_SEPARATOR + "|" + EVENT_TO_SEPARATOR, EVENT_PARTS);
             if (eventParts.length < 3 || eventParts[0].isEmpty()
                     || eventParts[1].isEmpty() || eventParts[2].isEmpty()) {
                 throw new MingException("Usage: event <description> /from <start time> /to <end time>");
