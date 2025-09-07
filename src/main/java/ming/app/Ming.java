@@ -12,9 +12,9 @@ import ming.ui.Ui;
  * It initializes the application and starts the command loop.
  */
 public class Ming {
-    private final Storage storage;
+    private Storage storage;
     private TaskList tasks;
-    private final Ui ui;
+    private Ui ui;
 
     /**
      * Constructs a Ming application with the specified file path for storage.
@@ -70,7 +70,7 @@ public class Ming {
             String response = c.execute(tasks, ui, storage);
 
             assert response != null : "Command execution should not return null";
-            return c.execute(tasks, ui, storage);
+            return response;
         } catch (MingException e) {
             return e.getMessage();
         }

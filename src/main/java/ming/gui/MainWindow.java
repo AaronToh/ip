@@ -45,8 +45,8 @@ public class MainWindow extends AnchorPane {
     /**
      * Injects the Ming instance
      */
-    public void setMing(Ming d) {
-        ming = d;
+    public void setMing(Ming ming) {
+        this.ming = ming;
     }
 
     /**
