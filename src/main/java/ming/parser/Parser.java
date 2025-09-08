@@ -62,30 +62,21 @@ public class Parser {
             return new DeleteCommand(i);
 
         case "find":
-            if (remainder.isEmpty()) {
-                throw new MingException("The search keyword cannot be empty.");
-            }
+            checkTaskEmpty(remainder);
             return new FindCommand(remainder);
 
         case "todo":
-            if (remainder.isEmpty()) {
-                throw new MingException("The description of a todo cannot be empty.");
-            }
+            checkTaskEmpty(remainder);
             return new TodoCommand(remainder);
 
         case "deadline":
-            String[] deadlineParts = remainder.split(DEADLINE_SEPARATOR, DEADLINE_PARTS);
-            if (deadlineParts.length < DEADLINE_PARTS || deadlineParts[0].isEmpty() || deadlineParts[1].isEmpty()) {
-                throw new MingException("Usage: deadline <description> /by <due date>");
-            }
+            checkTaskEmpty(remainder);
+            String[] deadlineParts = parseDeadline(remainder);
             return new DeadlineCommand(deadlineParts[0], parseDateTime(deadlineParts[1]));
 
         case "event":
-            String[] eventParts = remainder.split(EVENT_FROM_SEPARATOR + "|" + EVENT_TO_SEPARATOR, EVENT_PARTS);
-            if (eventParts.length < 3 || eventParts[0].isEmpty()
-                    || eventParts[1].isEmpty() || eventParts[2].isEmpty()) {
-                throw new MingException("Usage: event <description> /from <start time> /to <end time>");
-            }
+            checkTaskEmpty(remainder);
+            String[] eventParts = parseEvent(remainder);
             return new EventCommand(eventParts[0],
                     parseDateTime(eventParts[1]),
                     parseDateTime(eventParts[2]));
@@ -111,4 +102,26 @@ public class Parser {
         }
     }
 
+    private static void checkTaskEmpty(String remainder) throws MingException {
+        if (remainder.isEmpty()) {
+            throw new MingException("Please provide a task");
+        }
+    }
+
+    private static String[] parseDeadline(String remainder) throws MingException {
+        String[] deadlineParts = remainder.split(DEADLINE_SEPARATOR, DEADLINE_PARTS);
+        if (deadlineParts.length < DEADLINE_PARTS || deadlineParts[0].isEmpty() || deadlineParts[1].isEmpty()) {
+            throw new MingException("Usage: deadline <description> /by <due date>");
+        }
+        return deadlineParts;
+    }
+
+    private static String[] parseEvent(String remainder) throws MingException {
+        String[] eventParts = remainder.split(EVENT_FROM_SEPARATOR + "|" + EVENT_TO_SEPARATOR, EVENT_PARTS);
+        if (eventParts.length < 3 || eventParts[0].isEmpty()
+                || eventParts[1].isEmpty() || eventParts[2].isEmpty()) {
+            throw new MingException("Usage: event <description> /from <start time> /to <end time>");
+        }
+        return eventParts;
+    }
 }
