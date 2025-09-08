@@ -110,6 +110,7 @@ public class TaskList {
      * @throws MingException If the index is out of bounds.
      */
     public Task delete(int index) throws MingException {
+        System.out.println("Task size: " + tasks.size());
         checkIndex(index);
         Task task = tasks.get(index);
         tasks.remove(index);
