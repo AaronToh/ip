@@ -23,7 +23,7 @@ import ming.model.Todo;
  */
 public class Storage {
     private final Path path;
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+    private final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
 
     /**
      * Constructs a Storage object with the specified file path.
@@ -71,7 +71,7 @@ public class Storage {
                 tasks.add(todo);
                 break;
             case "D":
-                Task deadline = new Deadline(parts[2], LocalDateTime.parse(parts[3], formatter));
+                Task deadline = new Deadline(parts[2], LocalDateTime.parse(parts[3], FORMATTER));
                 if (isDone) {
                     deadline.markAsDone();
                 }
@@ -79,8 +79,8 @@ public class Storage {
                 break;
             case "E":
                 Task event = new Event(parts[2],
-                        LocalDateTime.parse(parts[3], formatter),
-                        LocalDateTime.parse(parts[4], formatter));
+                        LocalDateTime.parse(parts[3], FORMATTER),
+                        LocalDateTime.parse(parts[4], FORMATTER));
                 if (isDone) {
                     event.markAsDone();
                 }

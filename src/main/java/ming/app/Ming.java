@@ -37,6 +37,11 @@ public class Ming {
      * It reads user commands, executes them, and handles any exceptions.
      */
     public void run() {
+        // Assert internal state consistency
+        assert tasks != null;
+        assert ui != null;
+        assert storage != null;
+
         System.out.println(ui.showWelcome());
         System.out.println(ui.showLine());
         boolean isExit = false;
@@ -62,7 +67,10 @@ public class Ming {
     public String getResponse(String input) {
         try {
             Command c = Parser.parse(input);
-            return c.execute(tasks, ui, storage);
+            String response = c.execute(tasks, ui, storage);
+
+            assert response != null : "Command execution should not return null";
+            return response;
         } catch (MingException e) {
             return e.getMessage();
         }
