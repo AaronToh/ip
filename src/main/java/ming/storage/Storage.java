@@ -102,9 +102,9 @@ public class Storage {
     public void save(List<Task> tasks) throws MingException {
         try {
             FileWriter writer = new FileWriter(path.toFile());
-            for (Task task : tasks) {
-                writer.write(task.toDataString() + System.lineSeparator());
-            }
+            StringBuilder sb = new StringBuilder();
+            tasks.stream().forEach(task -> sb.append(task.toString()).append("\n"));
+            writer.write(sb.toString());
             writer.close();
         } catch (IOException e) {
             throw new MingException("Error saving tasks: " + e.getMessage());
