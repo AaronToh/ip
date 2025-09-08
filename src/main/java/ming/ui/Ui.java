@@ -2,6 +2,7 @@ package ming.ui;
 
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.IntStream;
 
 import ming.model.Task;
 
@@ -48,12 +49,11 @@ public class Ui {
     public String showList(List<Task> tasks) {
         StringBuilder sb = new StringBuilder();
         sb.append("Here are the tasks in your list:\n");
-        int i = 1;
-        for (Task task : tasks) {
-            sb.append(i).append(". ").append(task).append("\n");
-            i++;
-        }
-        return sb.toString().trim();
+
+        IntStream.rangeClosed(1, tasks.size())
+                .forEach(i -> sb.append(i).append(". ").append(tasks.get(i - 1)).append("\n"));
+
+        return sb.toString();
     }
 
     public String showMark(Task task) {
@@ -77,20 +77,21 @@ public class Ui {
     /**
      * Displays the list of tasks that match a search query.
      *
-     * @param tasks The list of matching tasks.
+     * @param foundTasks The list of matching tasks.
      */
-    public String showFind(List<Task> tasks) {
-        if (tasks.isEmpty()) {
+    public String showFind(List<Task> foundTasks) {
+        if (foundTasks.isEmpty()) {
             return "No matching tasks found.";
         }
+        System.out.println(foundTasks);
         StringBuilder sb = new StringBuilder();
         sb.append("Here are the matching tasks in your list:\n");
-        int i = 1;
-        for (Task task : tasks) {
-            sb.append(i).append(". ").append(task).append("\n");
-            i++;
-        }
-        return sb.toString().trim();
+
+        IntStream.rangeClosed(1, foundTasks.size())
+                .forEach(i -> sb.append(i).append(". ").append(foundTasks.get(i - 1)).append("\n"));
+
+        System.out.println(sb.toString());
+        return sb.toString();
     }
 
     public String showError(String message) {
