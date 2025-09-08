@@ -103,7 +103,7 @@ public class Storage {
         try {
             FileWriter writer = new FileWriter(path.toFile());
             StringBuilder sb = new StringBuilder();
-            tasks.stream().forEach(task -> sb.append(task.toString()).append("\n"));
+            tasks.stream().forEach(task -> sb.append(task.toDataString()).append("\n"));
             writer.write(sb.toString());
             writer.close();
         } catch (IOException e) {
