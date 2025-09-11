@@ -69,8 +69,8 @@ public class TaskList {
      * @param description The description of the Todo task.
      * @return The newly added Todo task.
      */
-    public Task addTodo(String description) {
-        Task task = new Todo(description);
+    public Task addTodo(String description, List<String> tags) {
+        Task task = new Todo(description, tags);
         tasks.add(task);
         return task;
     }
@@ -82,8 +82,8 @@ public class TaskList {
      * @param by          The deadline date and time.
      * @return The newly added Deadline task.
      */
-    public Task addDeadline(String description, LocalDateTime by) {
-        Task task = new Deadline(description, by);
+    public Task addDeadline(String description, LocalDateTime by, List<String> tags) {
+        Task task = new Deadline(description, by, tags);
         tasks.add(task);
         return task;
     }
@@ -96,8 +96,8 @@ public class TaskList {
      * @param to          The end date and time of the event.
      * @return The newly added Event task.
      */
-    public Task addEvent(String description, LocalDateTime from, LocalDateTime to) {
-        Task task = new Event(description, from, to);
+    public Task addEvent(String description, LocalDateTime from, LocalDateTime to, List<String> tags) {
+        Task task = new Event(description, from, to, tags);
         tasks.add(task);
         return task;
     }

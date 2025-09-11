@@ -1,5 +1,7 @@
 package ming.model;
 
+import java.util.List;
+
 import ming.exception.MingException;
 
 
@@ -8,13 +10,15 @@ import ming.exception.MingException;
  */
 public class Task {
     private final String description;
+    private final List<String> tags;
     private boolean isDone;
 
     /**
      * Constructs a Task with the given description. isDone is set to false by default.
      */
-    public Task(String description) {
+    public Task(String description, List<String> tags) {
         this.description = description;
+        this.tags = tags;
         this.isDone = false;
     }
 
@@ -53,6 +57,6 @@ public class Task {
 
     @Override
     public String toString() {
-        return (isDone ? "[X] " : "[ ] ") + description;
+        return (isDone ? "[X] " : "[ ] ") + description + tags;
     }
 }
