@@ -44,10 +44,7 @@ public class Parser {
         String command = scanner.hasNext() ? scanner.next() : "";
         String remainder = scanner.hasNextLine() ? scanner.nextLine() : "";
 
-        // Extract tags if present
-        List<String> tags = parseTags(remainder);
-        remainder = stripTags(remainder);
-
+        List<String> tags = new ArrayList<>();
         int i;
         switch (command) {
         case "bye":
@@ -69,19 +66,35 @@ public class Parser {
             return new DeleteCommand(i);
 
         case "find":
-            checkTaskEmpty(remainder);
-            return new FindCommand(remainder);
+            tags = parseTags(remainder, TAGS_FLAG);
+
+            if (!tags.isEmpty()) {
+                return new FindCommand(tags.get(0), "tag");
+            } else {
+                remainder = stripTags(remainder);
+                checkTaskEmpty(remainder);
+                return new FindCommand(remainder, "name");
+            }
 
         case "todo":
+            tags = parseTags(remainder, TAGS_FLAG);
+            remainder = stripTags(remainder);
+
             checkTaskEmpty(remainder);
             return new TodoCommand(remainder, tags);
 
         case "deadline":
+            tags = parseTags(remainder, TAGS_FLAG);
+            remainder = stripTags(remainder);
+
             checkTaskEmpty(remainder);
             String[] deadlineParts = parseDeadline(remainder);
             return new DeadlineCommand(deadlineParts[0], parseDateTime(deadlineParts[1]), tags);
 
         case "event":
+            tags = parseTags(remainder, TAGS_FLAG);
+            remainder = stripTags(remainder);
+
             checkTaskEmpty(remainder);
             String[] eventParts = parseEvent(remainder);
             return new EventCommand(eventParts[0],
@@ -116,14 +129,14 @@ public class Parser {
         }
     }
 
-    private static List<String> parseTags(String remainder) throws MingException {
+    private static List<String> parseTags(String remainder, String flag) throws MingException {
         List<String> tags = new ArrayList<>();
-        int flagIndex = remainder.indexOf(TAGS_FLAG);
+        int flagIndex = remainder.indexOf(flag);
         if (flagIndex == -1) {
-            return tags; // no tags flag
+            return tags;
         }
 
-        String tagPart = remainder.substring(flagIndex + TAGS_FLAG.length()).trim();
+        String tagPart = remainder.substring(flagIndex + flag.length()).trim();
         // remove double quotes if present
         if (tagPart.startsWith("\"") && tagPart.endsWith("\"")) {
             tagPart = tagPart.substring(1, tagPart.length() - 1);
@@ -133,6 +146,10 @@ public class Parser {
             if (!tag.trim().isEmpty()) {
                 tags.add(tag.trim());
             }
+        }
+
+        if (tags.isEmpty()) {
+            throw new MingException("Please provide valid tag(s)");
         }
 
         return tags;

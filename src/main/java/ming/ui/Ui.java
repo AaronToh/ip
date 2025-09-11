@@ -47,6 +47,9 @@ public class Ui {
      * @param tasks The list of tasks to be displayed.
      */
     public String showList(List<Task> tasks) {
+        if (tasks.isEmpty()) {
+            return "There are no tasks to show!";
+        }
         StringBuilder sb = new StringBuilder();
         sb.append("Here are the tasks in your list:\n");
 

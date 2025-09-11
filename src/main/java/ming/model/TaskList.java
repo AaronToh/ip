@@ -123,9 +123,15 @@ public class TaskList {
      * @param keyword The keyword to search for in task descriptions.
      * @return A list of tasks containing the keyword.
      */
-    public List<Task> find(String keyword) {
+    public List<Task> findByName(String keyword) {
         return tasks.stream()
                 .filter(task -> task.getDescription().toLowerCase().contains(keyword.toLowerCase()))
+                .toList();
+    }
+
+    public List<Task> findByTag(String keyword) {
+        return tasks.stream()
+                .filter(task -> task.getTags().contains(keyword))
                 .toList();
     }
 

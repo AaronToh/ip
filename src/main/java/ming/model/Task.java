@@ -26,6 +26,10 @@ public class Task {
         return description;
     }
 
+    public List<String> getTags() {
+        return tags;
+    }
+
     /**
      * Marks the task as done.
      */
@@ -57,6 +61,6 @@ public class Task {
 
     @Override
     public String toString() {
-        return (isDone ? "[X] " : "[ ] ") + description + tags;
+        return (isDone ? "[X] " : "[ ] ") + description;
     }
 }
