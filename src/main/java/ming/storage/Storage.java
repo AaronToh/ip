@@ -64,14 +64,16 @@ public class Storage {
             boolean isDone = parts[1].equals("1");
             switch (parts[0]) {
             case "T":
-                Task todo = new Todo(parts[2]);
+                Task todo = new Todo(parts[2], new ArrayList<>());
                 if (isDone) {
                     todo.markAsDone();
                 }
                 tasks.add(todo);
                 break;
             case "D":
-                Task deadline = new Deadline(parts[2], LocalDateTime.parse(parts[3], FORMATTER));
+                Task deadline = new Deadline(parts[2],
+                        LocalDateTime.parse(parts[3], FORMATTER),
+                        new ArrayList<>());
                 if (isDone) {
                     deadline.markAsDone();
                 }
@@ -80,7 +82,8 @@ public class Storage {
             case "E":
                 Task event = new Event(parts[2],
                         LocalDateTime.parse(parts[3], FORMATTER),
-                        LocalDateTime.parse(parts[4], FORMATTER));
+                        LocalDateTime.parse(parts[4], FORMATTER),
+                        new ArrayList<>());
                 if (isDone) {
                     event.markAsDone();
                 }

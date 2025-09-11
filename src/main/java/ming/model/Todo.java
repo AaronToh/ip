@@ -1,5 +1,7 @@
 package ming.model;
 
+import java.util.List;
+
 /**
  * Represents a todo task.
  */
@@ -9,8 +11,8 @@ public class Todo extends Task {
      *
      * @param description The description of the todo task.
      */
-    public Todo(String description) {
-        super(description);
+    public Todo(String description, List<String> tags) {
+        super(description, tags);
     }
 
     @Override

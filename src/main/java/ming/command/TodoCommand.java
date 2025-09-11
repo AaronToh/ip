@@ -1,5 +1,7 @@
 package ming.command;
 
+import java.util.List;
+
 import ming.exception.MingException;
 import ming.model.Task;
 import ming.model.TaskList;
@@ -11,9 +13,11 @@ import ming.ui.Ui;
  */
 public class TodoCommand extends Command {
     private final String description;
+    private final List<String> tags;
 
-    public TodoCommand(String description) {
+    public TodoCommand(String description, List<String> tags) {
         this.description = description;
+        this.tags = tags;
     }
 
     public String getDescription() {
@@ -22,7 +26,7 @@ public class TodoCommand extends Command {
 
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws MingException {
-        Task task = tasks.addTodo(description);
+        Task task = tasks.addTodo(description, tags);
         storage.save(tasks.getTasks());
         return ui.showAdd(task, tasks.getSize());
     }

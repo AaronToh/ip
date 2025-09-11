@@ -2,6 +2,7 @@ package ming.model;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 /**
  * Represents a deadline task with a description and a due date & time.
@@ -15,8 +16,8 @@ public class Deadline extends Task {
      * @param description Description of the deadline task.
      * @param by          Due date and time of the deadline task.
      */
-    public Deadline(String description, LocalDateTime by) {
-        super(description);
+    public Deadline(String description, LocalDateTime by, List<String> tags) {
+        super(description, tags);
         this.by = by;
     }
 
