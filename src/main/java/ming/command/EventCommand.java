@@ -39,4 +39,9 @@ public class EventCommand extends Command {
         return ui.showAdd(task, tasks.getSize());
     }
 
+    @Override
+    public String getType() {
+        return "AddCommand";
+    }
+
 }

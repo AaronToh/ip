@@ -22,4 +22,9 @@ public class DeleteCommand extends Command {
         storage.save(tasks.getTasks());
         return ui.showDelete(task, tasks.getSize());
     }
+
+    @Override
+    public String getType() {
+        return "DeleteCommand";
+    }
 }

@@ -22,4 +22,9 @@ public class UnmarkCommand extends Command {
         storage.save(tasks.getTasks());
         return ui.showUnmark(task);
     }
+
+    @Override
+    public String getType() {
+        return "ChangeMarkCommand";
+    }
 }

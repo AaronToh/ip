@@ -30,4 +30,9 @@ public class TodoCommand extends Command {
         storage.save(tasks.getTasks());
         return ui.showAdd(task, tasks.getSize());
     }
+
+    @Override
+    public String getType() {
+        return "AddCommand";    
+    }
 }
