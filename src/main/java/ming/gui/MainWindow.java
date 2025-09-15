@@ -24,6 +24,8 @@ public class MainWindow extends AnchorPane {
 
     private Ming ming;
 
+    private String commandType = "";
+
     private Image userImage =
             new Image(this.getClass().getResourceAsStream("/images/Screenshot 2025-09-02 at 12.41.30 AM.png"));
     private Image mingImage =
@@ -38,7 +40,7 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         String welcome = "Hello! I'm Ming! What can I do for you?";
         dialogContainer.getChildren().addAll(
-                DialogBox.getMingDialog(welcome, mingImage)
+                DialogBox.getMingDialog(welcome, mingImage, commandType)
         );
     }
 
@@ -57,9 +59,10 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String input = userInput.getText();
         String response = ming.getResponse(input);
+        commandType = ming.getCommandType();
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getMingDialog(response, mingImage)
+                DialogBox.getMingDialog(response, mingImage, commandType)
         );
         userInput.clear();
     }

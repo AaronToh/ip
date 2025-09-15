@@ -36,4 +36,9 @@ public class DeadlineCommand extends Command {
         storage.save(tasks.getTasks());
         return ui.showAdd(task, tasks.getSize());
     }
+
+    @Override
+    public String getType() {
+        return "AddCommand";
+    }
 }

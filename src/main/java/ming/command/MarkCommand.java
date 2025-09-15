@@ -22,4 +22,9 @@ public class MarkCommand extends Command {
         storage.save(tasks.getTasks());
         return ui.showMark(task);
     }
+
+    @Override
+    public String getType() {
+        return "ChnageMarkCommand";
+    }
 }

@@ -15,6 +15,7 @@ public class Ming {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
+    private String commandType;
 
     /**
      * Constructs a Ming application with the specified file path for storage.
@@ -68,6 +69,7 @@ public class Ming {
         try {
             Command c = Parser.parse(input);
             String response = c.execute(tasks, ui, storage);
+            commandType = c.getType();
 
             assert response != null : "Command execution should not return null";
             return response;
@@ -78,5 +80,9 @@ public class Ming {
 
     public static void main(String[] args) {
         new Ming("data/ming.txt").run();
+    }
+
+    public String getCommandType() {
+        return commandType;
     }
 }
