@@ -25,6 +25,7 @@ public class Ming {
     public Ming(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
+
         try {
             tasks = new TaskList(storage.load());
         } catch (MingException e) {
