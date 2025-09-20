@@ -14,6 +14,12 @@ public class FindCommand extends Command {
     private final String keyword;
     private final String type;
 
+    /**
+     * Constructs a FindCommand with the specified keyword.
+     *
+     * @param keyword
+     * @param type
+     */
     public FindCommand(String keyword, String type) {
         this.keyword = keyword;
         this.type = type;

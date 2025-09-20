@@ -129,6 +129,12 @@ public class TaskList {
                 .toList();
     }
 
+    /**
+     * Finds and returns a list of tasks that are tagged with the specified keyword.
+     *
+     * @param keyword The tag to search for in task tags.
+     * @return A list of tasks containing the specified tag.
+     */
     public List<Task> findByTag(String keyword) {
         return tasks.stream()
                 .filter(task -> task.getTags().contains(keyword))

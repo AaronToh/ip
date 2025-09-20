@@ -15,6 +15,11 @@ public class TodoCommand extends Command {
     private final String description;
     private final List<String> tags;
 
+    /**
+     * Constructs a TodoCommand with the specified description.
+     *
+     * @param description The description of the todo task.
+     */
     public TodoCommand(String description, List<String> tags) {
         this.description = description;
         this.tags = tags;
@@ -33,6 +38,6 @@ public class TodoCommand extends Command {
 
     @Override
     public String getType() {
-        return "AddCommand";    
+        return "AddCommand";
     }
 }
