@@ -23,5 +23,5 @@ public abstract class Command {
 
     public String getType() {
         return "generic";
-    }   
+    }
 }
